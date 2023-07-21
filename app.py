@@ -149,23 +149,9 @@ def generate_pdf_report(remaining_amount):
 
 
 def main():
-    import streamlit as st
 
     # Center the title using CSS styling
-    st.markdown(
-        f"""
-        <style>
-        .center {{
-            display: flex;
-            justify-content: center;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-    
-    # Centered title
-    st.markdown("<h1 class='center'>Monthly Income Analysis</h1>", unsafe_allow_html=True)
+    st.title("            Monthly Income Analysis")
     
     # Show the input fields in a single line, half-split
     col1, col2 = st.columns(2)
