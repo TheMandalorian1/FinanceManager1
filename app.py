@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit.components.v1 import html
 from fpdf import FPDF
-import pdfkit
+from weasyprint import HTML
 
 def calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses):
     total_expenses = education + food + rent + transport + general_expenses
@@ -91,9 +91,10 @@ def generate_html_report(remaining_amount, monthly_income):
     report += "</html>"
     return report
 
+
 def generate_pdf_report(remaining_amount, monthly_income):
     report_html = generate_html_report(remaining_amount, monthly_income)
-    pdf_data = pdfkit.from_string(report_html, False)
+    pdf_data = HTML(string=report_html).write_pdf()
     return pdf_data
     
 
