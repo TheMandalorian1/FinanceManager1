@@ -93,6 +93,8 @@ def generate_html_report(remaining_amount, monthly_income):
 
 
 def generate_pdf_report(remaining_amount, monthly_income):
+    gold_bonds_percentage = 10
+
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)
@@ -104,6 +106,8 @@ def generate_pdf_report(remaining_amount, monthly_income):
         pdf.set_font("Arial", size=14)
         pdf.cell(200, 10, txt="Please enter your income and other expenses!", ln=True, align="L")
     else:
+        remaining_after_deduction = calculate_remaining_income(monthly_income, 0, 0, 0, 0, 0)
+
         if remaining_amount < 5000:
             save_percentage = 60
             sip_percentage = 25
@@ -112,9 +116,9 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Save in a savings account: {remaining_amount * save_percentage / 100} ({save_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in SIP mutual funds: {remaining_amount * sip_percentage / 100} ({sip_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in bonds to diversify the portfolio: {remaining_amount * bonds_percentage / 100} ({bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Save in a savings account: {remaining_after_deduction * save_percentage / 100} ({save_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in SIP mutual funds: {remaining_after_deduction * sip_percentage / 100} ({sip_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in bonds to diversify the portfolio: {remaining_after_deduction * bonds_percentage / 100} ({bonds_percentage}%)", ln=True, align="L")
 
 
         elif 5000 < remaining_amount < 20000:
@@ -125,17 +129,16 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Invest in direct equities: {remaining_amount * direct_equities_percentage / 100} ({direct_equities_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in RBI bonds: {remaining_amount * rbi_bonds_percentage / 100} ({rbi_bonds_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in corporate bonds: {remaining_amount * corporate_bonds_percentage / 100} ({corporate_bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in direct equities: {remaining_after_deduction * direct_equities_percentage / 100} ({direct_equities_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in RBI bonds: {remaining_after_deduction * rbi_bonds_percentage / 100} ({rbi_bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in corporate bonds: {remaining_after_deduction * corporate_bonds_percentage / 100} ({corporate_bonds_percentage}%)", ln=True, align="L")
         
         
         elif 20000 < remaining_amount < 100000:
             fixed_deposits_percentage = 40
             gold_percentage = 30
-            gold_bonds_percentage = 10
 
-            remaining_after_gold_bonds = remaining_amount - remaining_amount * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
+            remaining_after_gold_bonds = remaining_amount - remaining_after_deduction * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
             stocks_upper_percentage = 70
             stocks_middle_percentage = 18
             stocks_lower_percentage = 12
@@ -143,7 +146,7 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Invest in fixed deposits: {remaining_amount * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in fixed deposits: {remaining_after_deduction * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in gold: {remaining_after_gold_bonds * gold_percentage / 100} ({gold_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in gold bonds: {remaining_after_gold_bonds * gold_bonds_percentage / 100} ({gold_bonds_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in stocks (Upper): {remaining_after_gold_bonds * stocks_upper_percentage / 100} ({stocks_upper_percentage}%)", ln=True, align="L")
@@ -155,7 +158,7 @@ def generate_pdf_report(remaining_amount, monthly_income):
             gold_percentage = 12
             mutual_funds_percentage = 18
 
-            remaining_after_gold_bonds = remaining_amount - remaining_amount * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
+            remaining_after_gold_bonds = remaining_amount - remaining_after_deduction * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
             direct_equities_upper_percentage = 30
             direct_equities_middle_percentage = 45
             direct_equities_lower_percentage = 25
@@ -163,7 +166,7 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Invest in fixed deposits: {remaining_amount * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in fixed deposits: {remaining_after_deduction * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in gold: {remaining_after_gold_bonds * gold_percentage / 100} ({gold_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in mutual funds: {remaining_after_gold_bonds * mutual_funds_percentage / 100} ({mutual_funds_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in direct equities (Upper): {remaining_after_gold_bonds * direct_equities_upper_percentage / 100} ({direct_equities_upper_percentage}%)", ln=True, align="L")
@@ -203,14 +206,11 @@ def main():
         html_report = f"<div>{report}</div>"
         st.write(html_report, unsafe_allow_html=True)
 
-        pdf_report_data = generate_pdf_report(remaining_amount, monthly_income)
-
         with st.expander("Download Report"):
-            # Provide the option to download the report as a PDF
             st.write("Click the button below to download the report as a PDF file.")
             st.download_button(
                 label="Download PDF Report",
-                data=pdf_report_data,
+                data=open(pdf_report_data, "rb").read(),
                 file_name="MIA_Report.pdf",
                 mime="application/pdf"
             )
