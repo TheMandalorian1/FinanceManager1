@@ -172,7 +172,7 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.cell(200, 10, txt=f"Invest in direct equities (Upper): {remaining_after_gold_bonds * direct_equities_upper_percentage / 100} ({direct_equities_upper_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in direct equities (Middle): {remaining_after_gold_bonds * direct_equities_middle_percentage / 100} ({direct_equities_middle_percentage}%)", ln=True, align="L")
 
-    return pdf_file
+    return pdf
 
     
 
