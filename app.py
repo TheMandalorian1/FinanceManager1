@@ -1,8 +1,6 @@
 import streamlit as st
 from streamlit.components.v1 import html
 from fpdf import FPDF
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
 
 def calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses):
     total_expenses = education + food + rent + transport + general_expenses
