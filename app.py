@@ -151,8 +151,21 @@ def generate_pdf_report(remaining_amount):
 def main():
     import streamlit as st
 
-    # Center the title
-    st.title("Monthly Income Analysis")
+    # Center the title using CSS styling
+    st.markdown(
+        f"""
+        <style>
+        .center {{
+            display: flex;
+            justify-content: center;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+    
+    # Centered title
+    st.markdown("<h1 class='center'>Monthly Income Analysis</h1>", unsafe_allow_html=True)
     
     # Show the input fields in a single line, half-split
     col1, col2 = st.beta_columns(2)
@@ -161,14 +174,12 @@ def main():
     with col1:
         monthly_income = st.number_input("Monthly Income", min_value=0.0, step=1000.0)
         education = st.number_input("Education Expenses", min_value=0.0, step=100.0)
+        food = st.number_input("Food Expenses", min_value=0.0, step=100.0)
     
     # Second column with Food Expenses, Rent Expenses, and Transport Expenses
     with col2:
-        food = st.number_input("Food Expenses", min_value=0.0, step=100.0)
         rent = st.number_input("Rent Expenses", min_value=0.0, step=100.0)
         transport = st.number_input("Transport Expenses", min_value=0.0, step=100.0)
-    
-    # General Expenses/Others outside the columns
     general_expenses = st.number_input("General Expenses/Others", min_value=0.0, step=100.0)
 
 
