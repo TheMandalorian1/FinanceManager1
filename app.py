@@ -1,7 +1,8 @@
 import streamlit as st
 from streamlit.components.v1 import html
 from fpdf import FPDF
-from weasyprint import HTML
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
 
 def calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses):
     total_expenses = education + food + rent + transport + general_expenses
@@ -55,6 +56,7 @@ def generate_html_report(remaining_amount, monthly_income):
         fixed_deposits_percentage = 40
         gold_percentage = 30
         gold_bonds_percentage = 10
+        
         stocks_upper_percentage = 70
         stocks_middle_percentage = 18
         stocks_lower_percentage = 12
@@ -93,9 +95,91 @@ def generate_html_report(remaining_amount, monthly_income):
 
 
 def generate_pdf_report(remaining_amount, monthly_income):
-    report_html = generate_html_report(remaining_amount, monthly_income)
-    pdf_data = HTML(string=report_html).write_pdf()
-    return pdf_data
+    # Set up the canvas for the PDF document
+    pdf_file = "MIA_Report.pdf"
+    c = canvas.Canvas(pdf_file, pagesize=letter)
+    width, height = letter
+
+    # Add content to the PDF document
+    c.setFont("Helvetica", 16)
+    c.drawString(100, height - 100, "Monthly Income Analysis Report")
+    c.setFont("Helvetica", 12)
+    c.drawString(100, height - 150, f"Remaining Amount after Expenses: {remaining_amount}")
+
+    if monthly_income <= 0:
+        c.setFont("Helvetica", 14)
+        c.drawString(100, height - 200, "Please enter your income and other expenses!")
+    else:
+        if remaining_amount < 5000:
+            save_percentage = 60
+            sip_percentage = 25
+            bonds_percentage = 15
+
+            c.setFont("Helvetica", 14)
+            c.drawString(100, height - 200, "Investment Recommendations:")
+            c.setFont("Helvetica", 12)
+            c.drawString(120, height - 230, f"Save in a savings account: {remaining_amount * save_percentage / 100} ({save_percentage}%)")
+            c.drawString(120, height - 250, f"Invest in SIP mutual funds: {remaining_amount * sip_percentage / 100} ({sip_percentage}%)")
+            c.drawString(120, height - 270, f"Invest in bonds to diversify the portfolio: {remaining_amount * bonds_percentage / 100} ({bonds_percentage}%)")
+
+        elif 5000 < remaining_amount < 20000:
+            direct_equities_percentage = 25
+            rbi_bonds_percentage = 45
+            corporate_bonds_percentage = 30
+        
+            c.setFont("Helvetica", 14)
+            c.drawString(100, height - 200, "Investment Recommendations:")
+            c.setFont("Helvetica", 12)
+            c.drawString(120, height - 230, f"Invest in direct equities: {remaining_amount * direct_equities_percentage / 100} ({direct_equities_percentage}%)")
+            c.drawString(120, height - 250, f"Invest in RBI bonds: {remaining_amount * rbi_bonds_percentage / 100} ({rbi_bonds_percentage}%)")
+            c.drawString(120, height - 270, f"Invest in corporate bonds: {remaining_amount * corporate_bonds_percentage / 100} ({corporate_bonds_percentage}%)")
+        
+        
+        elif 20000 < remaining_amount < 100000:
+            fixed_deposits_percentage = 40
+            gold_percentage = 30
+            gold_bonds_percentage = 10
+
+            remaining_after_gold_bonds = remaining_amount - remaining_amount * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
+            stocks_upper_percentage = 70
+            stocks_middle_percentage = 18
+            stocks_lower_percentage = 12
+        
+            c.setFont("Helvetica", 14)
+            c.drawString(100, height - 200, "Investment Recommendations:")
+            c.setFont("Helvetica", 12)
+            c.drawString(120, height - 230, f"Invest in fixed deposits: {remaining_amount * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)")
+            c.drawString(120, height - 250, f"Invest in gold: {remaining_after_fixed_deposits * gold_percentage / 100} ({gold_percentage}%)")
+            c.drawString(120, height - 270, f"Invest in gold bonds: {remaining_after_gold * gold_bonds_percentage / 100} ({gold_bonds_percentage}%)")
+            c.drawString(120, height - 290, f"Invest in stocks (Upper): {remaining_after_gold_bonds * stocks_upper_percentage / 100} ({stocks_upper_percentage}%)")
+            c.drawString(120, height - 310, f"Invest in stocks (Middle): {remaining_after_gold_bonds * stocks_middle_percentage / 100} ({stocks_middle_percentage}%)")
+            c.drawString(120, height - 330, f"Invest in stocks (Lower): {remaining_after_gold_bonds * stocks_lower_percentage / 100} ({stocks_lower_percentage}%)")
+        
+        elif remaining_amount >= 100000:
+            fixed_deposits_percentage = 40
+            gold_percentage = 12
+            mutual_funds_percentage = 18
+
+            remaining_after_gold_bonds = remaining_amount - remaining_amount * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
+            direct_equities_upper_percentage = 30
+            direct_equities_middle_percentage = 45
+            direct_equities_lower_percentage = 25
+        
+            c.setFont("Helvetica", 14)
+            c.drawString(100, height - 200, "Investment Recommendations:")
+            c.setFont("Helvetica", 12)
+            c.drawString(120, height - 230, f"Invest in fixed deposits: {remaining_amount * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)")
+            c.drawString(120, height - 250, f"Invest in gold: {remaining_after_fixed_deposits * gold_percentage / 100} ({gold_percentage}%)")
+            c.drawString(120, height - 270, f"Invest in mutual funds: {remaining_after_gold * mutual_funds_percentage / 100} ({mutual_funds_percentage}%)")
+            c.drawString(120, height - 290, f"Invest in direct equities (Upper): {remaining_after_mutual_funds * direct_equities_upper_percentage / 100} ({direct_equities_upper_percentage}%)")
+            c.drawString(120, height - 310, f"Invest in direct equities (Middle): {remaining_after_mutual_funds * direct_equities_middle_percentage / 100} ({direct_equities_middle_percentage}%)")
+            c.drawString(120, height - 330, f"Invest in direct equities (Lower): {remaining_after_mutual_funds * direct_equities_lower_percentage / 100} ({direct_equities_lower_percentage}%)")
+
+
+    # Save and close the PDF document
+    c.save()
+    return pdf_file
+
     
 
 def main():
