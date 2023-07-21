@@ -206,7 +206,7 @@ def main():
     if st.button("Generate Report"):
         remaining_amount = calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses)
         
-        report = generate_html_report(remaining_amount, interval_result)
+        report = generate_html_report(remaining_amount, monthly_income)
         html_report = f"<div>{report}</div>"
         html(html_report, height=500)
         
