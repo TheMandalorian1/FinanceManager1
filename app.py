@@ -202,16 +202,13 @@ def main():
     if st.button("Generate Report"):
         remaining_amount = calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses)
 
-        report = generate_html_report(remaining_amount, monthly_income)
-        html_report = f"<div>{report}</div>"
-        st.write(html_report, unsafe_allow_html=True)
-
+        pdf_report = generate_pdf_report(remaining_amount, monthly_income)
         with st.expander("Download Report"):
             st.write("Click the button below to download the report as a PDF file.")
             st.download_button(
                 label="Download PDF Report",
-                data=open(pdf_report_data, "rb").read(),
-                file_name="MIA_Report.pdf",
+                data=pdf_report.output(dest="S").encode("latin-1"),
+                file_name="monthly_income_analysis_report.pdf",
                 mime="application/pdf"
             )
 
