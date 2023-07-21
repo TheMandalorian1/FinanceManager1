@@ -168,7 +168,7 @@ def main():
     st.markdown("<h1 class='center'>Monthly Income Analysis</h1>", unsafe_allow_html=True)
     
     # Show the input fields in a single line, half-split
-    col1, col2 = st.beta_columns(2)
+    col1, col2 = st.columns(2)
     
     # First column with Monthly Income and Education Expenses
     with col1:
@@ -180,7 +180,7 @@ def main():
     with col2:
         rent = st.number_input("Rent Expenses", min_value=0.0, step=100.0)
         transport = st.number_input("Transport Expenses", min_value=0.0, step=100.0)
-    general_expenses = st.number_input("General Expenses/Others", min_value=0.0, step=100.0)
+        general_expenses = st.number_input("General Expenses/Others", min_value=0.0, step=100.0)
 
 
     if st.button("Generate Report"):
