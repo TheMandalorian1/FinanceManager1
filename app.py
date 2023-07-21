@@ -30,7 +30,7 @@ def generate_html_report(remaining_amount, monthly_income):
     if monthly_income <= 0:
         report += "<h4>Please enter you income and other expenses!</h4>"
 
-    if remaining_amount < 5000:
+    elif remaining_amount < 5000:
         save_percentage = 60
         sip_percentage = 25
         bonds_percentage = 15
