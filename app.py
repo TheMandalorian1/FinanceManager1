@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit.components.v1 import html
 from fpdf import FPDF
+import pdfkit
 
 def calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses):
     total_expenses = education + food + rent + transport + general_expenses
