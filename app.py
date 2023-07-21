@@ -172,10 +172,6 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.cell(200, 10, txt=f"Invest in direct equities (Upper): {remaining_after_gold_bonds * direct_equities_upper_percentage / 100} ({direct_equities_upper_percentage}%)", ln=True, align="L")
             pdf.cell(200, 10, txt=f"Invest in direct equities (Middle): {remaining_after_gold_bonds * direct_equities_middle_percentage / 100} ({direct_equities_middle_percentage}%)", ln=True, align="L")
 
-
-    # Save and close the PDF document
-    pdf_file = "MIA_Report.pdf"
-    pdf.output(pdf_file)
     return pdf_file
 
     
