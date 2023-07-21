@@ -149,15 +149,28 @@ def generate_pdf_report(remaining_amount):
 
 
 def main():
-    st.title("Monthly Income Analysis")
-    st.write("Enter your monthly income and expenses:")
+    import streamlit as st
 
-    monthly_income = st.number_input("Monthly Income", min_value=0.0, step=1000.0)
-    education = st.number_input("Education Expenses", min_value=0.0, step=100.0)
-    food = st.number_input("Food Expenses", min_value=0.0, step=100.0)
-    rent = st.number_input("Rent Expenses", min_value=0.0, step=100.0)
-    transport = st.number_input("Transport Expenses", min_value=0.0, step=100.0)
+    # Center the title
+    st.title("Monthly Income Analysis")
+    
+    # Show the input fields in a single line, half-split
+    col1, col2 = st.beta_columns(2)
+    
+    # First column with Monthly Income and Education Expenses
+    with col1:
+        monthly_income = st.number_input("Monthly Income", min_value=0.0, step=1000.0)
+        education = st.number_input("Education Expenses", min_value=0.0, step=100.0)
+    
+    # Second column with Food Expenses, Rent Expenses, and Transport Expenses
+    with col2:
+        food = st.number_input("Food Expenses", min_value=0.0, step=100.0)
+        rent = st.number_input("Rent Expenses", min_value=0.0, step=100.0)
+        transport = st.number_input("Transport Expenses", min_value=0.0, step=100.0)
+    
+    # General Expenses/Others outside the columns
     general_expenses = st.number_input("General Expenses/Others", min_value=0.0, step=100.0)
+
 
     if st.button("Generate Report"):
         remaining_amount = calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses)
