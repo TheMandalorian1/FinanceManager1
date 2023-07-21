@@ -173,7 +173,8 @@ def generate_pdf_report(remaining_amount, monthly_income):
 
 
     # Save and close the PDF document
-    c.save()
+    pdf_file = "MIA_Report.pdf"
+    pdf.output(pdf_file)
     return pdf_file
 
     
