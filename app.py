@@ -90,8 +90,8 @@ def generate_html_report(remaining_amount, monthly_income):
     report += "</html>"
     return report
 
-def generate_pdf_report(remaining_amount):
-    report_html = generate_html_report(remaining_amount)
+def generate_pdf_report(remaining_amount, monthly_income):
+    report_html = generate_html_report(remaining_amount, monthly_income)
     pdf_data = pdfkit.from_string(report_html, False)
     return pdf_data
     
@@ -118,11 +118,11 @@ def main():
     if st.button("Generate Report"):
         remaining_amount = calculate_remaining_income(monthly_income, education, food, rent, transport, general_expenses)
 
-        report = generate_html_report(remaining_amount)
+        report = generate_html_report(remaining_amount, monthly_income)
         html_report = f"<div>{report}</div>"
         st.write(html_report, unsafe_allow_html=True)
 
-        pdf_report_data = generate_pdf_report(remaining_amount)
+        pdf_report_data = generate_pdf_report(remaining_amount, monthly_income)
 
         with st.expander("Download Report"):
             # Provide the option to download the report as a PDF
