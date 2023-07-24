@@ -34,9 +34,9 @@ def generate_html_report(remaining_amount, monthly_income):
         bonds_percentage = 15
         report += "<h3>Investment Recommendations:</h3>"
         report += f"<ul>"
-        report += f"<li>Save in a savings account: {remaining_amount * save_percentage / 100} ({save_percentage}%)</li>"
-        report += f"<li>Invest in SIP mutual funds: {remaining_amount * sip_percentage / 100} ({sip_percentage}%)</li>"
-        report += f"<li>Invest in bonds to diversify the portfolio: {remaining_amount * bonds_percentage / 100} ({bonds_percentage}%)</li>"
+        report += f"<li>Save in a savings account upto: {remaining_amount * save_percentage / 100} Rs. ({save_percentage}%)</li>"
+        report += f"<li>Invest in SIP mutual funds upto: {remaining_amount * sip_percentage / 100} Rs. ({sip_percentage}%)</li>"
+        report += f"<li>Invest in bonds to diversify the portfolio upto: {remaining_amount * bonds_percentage / 100} Rs. ({bonds_percentage}%)</li>"
         report += "</ul>"
 
     elif 5000 < remaining_amount < 20000:
@@ -45,9 +45,9 @@ def generate_html_report(remaining_amount, monthly_income):
         corporate_bonds_percentage = 30
         report += "<h3>Investment Recommendations:</h3>"
         report += f"<ul>"
-        report += f"<li>Invest in direct equities: {remaining_amount * direct_equities_percentage / 100} ({direct_equities_percentage}%)</li>"
-        report += f"<li>Invest in RBI bonds: {remaining_amount * rbi_bonds_percentage / 100} ({rbi_bonds_percentage}%)</li>"
-        report += f"<li>Invest in corporate bonds: {remaining_amount * corporate_bonds_percentage / 100} ({corporate_bonds_percentage}%)</li>"
+        report += f"<li>Invest in direct equities upto: {remaining_amount * direct_equities_percentage / 100} Rs. ({direct_equities_percentage}%)</li>"
+        report += f"<li>Invest in RBI bonds upto: {remaining_amount * rbi_bonds_percentage / 100} Rs. ({rbi_bonds_percentage}%)</li>"
+        report += f"<li>Invest in corporate bonds upto: {remaining_amount * corporate_bonds_percentage / 100} Rs. ({corporate_bonds_percentage}%)</li>"
         report += "</ul>"
 
     elif 20000 < remaining_amount < 100000:
@@ -55,7 +55,7 @@ def generate_html_report(remaining_amount, monthly_income):
         gold_percentage = 30
         gold_bonds_percentage = 10
         
-        remaining_after_gold_bonds = remaining_amount - remaining_after_deduction * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
+        remaining_after_gold_bonds = remaining_amount - remaining_amount * ((fixed_deposits_percentage + gold_percentage + gold_bonds_percentage) / 100)
         
         stocks_upper_percentage = 70
         stocks_middle_percentage = 18
@@ -63,12 +63,12 @@ def generate_html_report(remaining_amount, monthly_income):
 
         report += "<h3>Investment Recommendations:</h3>"
         report += f"<ul>"
-        report += f"<li>Invest in fixed deposits: {remaining_amount * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)</li>"
-        report += f"<li>Invest in gold: {remaining_amount * gold_percentage / 100} ({gold_percentage}%)</li>"
-        report += f"<li>Invest in gold bonds: {remaining_amount * gold_bonds_percentage / 100} ({gold_bonds_percentage}%)</li>"
-        report += f"<li>Invest in stocks (Upper): {remaining_after_gold_bonds * stocks_upper_percentage / 100} ({stocks_upper_percentage}%)</li>"
-        report += f"<li>Invest in stocks (Middle): {remaining_after_gold_bonds * stocks_middle_percentage / 100} ({stocks_middle_percentage}%)</li>"
-        report += f"<li>Invest in stocks (Lower): {remaining_after_gold_bonds * stocks_lower_percentage / 100} ({stocks_lower_percentage}%)</li>"
+        report += f"<li>Invest in fixed deposits upto: {remaining_amount * fixed_deposits_percentage / 100} Rs. ({fixed_deposits_percentage}%)</li>"
+        report += f"<li>Invest in gold upto: {remaining_amount * gold_percentage / 100} Rs. ({gold_percentage}%)</li>"
+        report += f"<li>Invest in gold bonds upto: {remaining_amount * gold_bonds_percentage / 100} Rs. ({gold_bonds_percentage}%)</li>"
+        report += f"<li>Invest in stocks (Upper) upto: {remaining_after_gold_bonds * stocks_upper_percentage / 100} Rs. ({stocks_upper_percentage}%)</li>"
+        report += f"<li>Invest in stocks (Middle) upto: {remaining_after_gold_bonds * stocks_middle_percentage / 100} Rs. ({stocks_middle_percentage}%)</li>"
+        report += f"<li>Invest in stocks (Lower) upto: {remaining_after_gold_bonds * stocks_lower_percentage / 100} Rs. ({stocks_lower_percentage}%)</li>"
         report += "</ul>"
 
     elif remaining_amount >= 100000:
@@ -85,12 +85,12 @@ def generate_html_report(remaining_amount, monthly_income):
 
         report += "<h3>Investment Recommendations:</h3>"
         report += f"<ul>"
-        report += f"<li>Invest in real estate: {remaining_amount * real_estate_percentage / 100} ({real_estate_percentage}%)</li>"
-        report += f"<li>Invest in gold: {remaining_amount * gold_percentage / 100} ({gold_percentage}%)</li>"
-        report += f"<li>Invest in mutual funds: {remaining_amount * mutual_funds_percentage / 100} ({mutual_funds_percentage}%)</li>"
-        report += f"<li>Invest in direct equities (Upper): {remaining_aftermutual_funds_percentage * direct_equities_upper_percentage / 100} ({direct_equities_upper_percentage}%)</li>"
-        report += f"<li>Invest in direct equities (Middle): {remaining_aftermutual_funds_percentage * direct_equities_middle_percentage / 100} ({direct_equities_middle_percentage}%)</li>"
-        report += f"<li>Invest in direct equities (Lower): {remaining_aftermutual_funds_percentage * direct_equities_lower_percentage / 100} ({direct_equities_lower_percentage}%)</li>"
+        report += f"<li>Invest in real estate upto: {remaining_amount * real_estate_percentage / 100} Rs. ({real_estate_percentage}%)</li>"
+        report += f"<li>Invest in gold upto: {remaining_amount * gold_percentage / 100} Rs. ({gold_percentage}%)</li>"
+        report += f"<li>Invest in mutual funds upto: {remaining_amount * mutual_funds_percentage / 100} Rs. ({mutual_funds_percentage}%)</li>"
+        report += f"<li>Invest in direct equities (Upper) upto: {remaining_aftermutual_funds_percentage * direct_equities_upper_percentage / 100} Rs. ({direct_equities_upper_percentage}%)</li>"
+        report += f"<li>Invest in direct equities (Middle) upto: {remaining_aftermutual_funds_percentage * direct_equities_middle_percentage / 100} Rs. ({direct_equities_middle_percentage}%)</li>"
+        report += f"<li>Invest in direct equities (Lower) upto: {remaining_aftermutual_funds_percentage * direct_equities_lower_percentage / 100} Rs. ({direct_equities_lower_percentage}%)</li>"
         report += "</ul>"
 
     report += "</body>"
@@ -112,7 +112,6 @@ def generate_pdf_report(remaining_amount, monthly_income):
         pdf.set_font("Arial", size=14)
         pdf.cell(200, 10, txt="Please enter your income and other expenses!", ln=True, align="L")
     else:
-        remaining_amount = calculate_remaining_income(monthly_income, 0, 0, 0, 0, 0)
 
         if remaining_amount < 5000:
             save_percentage = 60
@@ -122,9 +121,9 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Save in a savings account: {remaining_amount * save_percentage / 100} ({save_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in SIP mutual funds: {remaining_amount * sip_percentage / 100} ({sip_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in bonds to diversify the portfolio: {remaining_amount * bonds_percentage / 100} ({bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Save in a savings account upto: {remaining_amount * save_percentage / 100} Rs. ({save_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in SIP mutual funds upto: {remaining_amount * sip_percentage / 100} Rs. ({sip_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in bonds to diversify the portfolio upto: {remaining_amount * bonds_percentage / 100} Rs. ({bonds_percentage}%)", ln=True, align="L")
 
 
         elif 5000 < remaining_amount < 20000:
@@ -135,9 +134,9 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Invest in direct equities: {remaining_amount * direct_equities_percentage / 100} ({direct_equities_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in RBI bonds: {remaining_amount * rbi_bonds_percentage / 100} ({rbi_bonds_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in corporate bonds: {remaining_amount * corporate_bonds_percentage / 100} ({corporate_bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in direct equities upto: {remaining_amount * direct_equities_percentage / 100} Rs. ({direct_equities_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in RBI bonds upto: {remaining_amount * rbi_bonds_percentage / 100} Rs. ({rbi_bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in corporate bonds upto: {remaining_amount * corporate_bonds_percentage / 100} Rs. ({corporate_bonds_percentage}%)", ln=True, align="L")
         
         
         elif 20000 < remaining_amount < 100000:
@@ -153,12 +152,12 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Invest in fixed deposits: {remaining_amount * fixed_deposits_percentage / 100} ({fixed_deposits_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in gold: {remaining_amount * gold_percentage / 100} ({gold_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in gold bonds: {remaining_amount * gold_bonds_percentage / 100} ({gold_bonds_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in stocks (Upper): {remaining_after_gold_bonds * stocks_upper_percentage / 100} ({stocks_upper_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in stocks (Middle): {remaining_after_gold_bonds * stocks_middle_percentage / 100} ({stocks_middle_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in stocks (Lower): {remaining_after_gold_bonds * stocks_lower_percentage / 100} ({stocks_lower_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in fixed deposits upto: {remaining_amount * fixed_deposits_percentage / 100} Rs. ({fixed_deposits_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in gold upto: {remaining_amount * gold_percentage / 100} Rs. ({gold_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in gold bonds upto: {remaining_amount * gold_bonds_percentage / 100} Rs. ({gold_bonds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in stocks (Upper) upto: {remaining_after_gold_bonds * stocks_upper_percentage / 100} Rs. ({stocks_upper_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in stocks (Middle) upto: {remaining_after_gold_bonds * stocks_middle_percentage / 100} Rs. ({stocks_middle_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in stocks (Lower) upto: {remaining_after_gold_bonds * stocks_lower_percentage / 100} Rs. ({stocks_lower_percentage}%)", ln=True, align="L")
 
         elif remaining_amount >= 100000:
             real_estate_percentage = 40
@@ -174,12 +173,12 @@ def generate_pdf_report(remaining_amount, monthly_income):
             pdf.set_font("Arial", size=14)
             pdf.cell(200, 10, txt="Investment Recommendations:", ln=True, align="L")
             pdf.set_font("Arial", size=12)
-            pdf.cell(200, 10, txt=f"Invest in real state: {remaining_amount * real_estate_percentage / 100} ({real_estate_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in gold: {remaining_amount * gold_percentage / 100} ({gold_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in mutual funds: {remaining_amount * mutual_funds_percentage / 100} ({mutual_funds_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in direct equities (Upper): {remaining_after_gold_bonds * direct_equities_upper_percentage / 100} ({direct_equities_upper_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in direct equities (Middle): {remaining_after_gold_bonds * direct_equities_middle_percentage / 100} ({direct_equities_middle_percentage}%)", ln=True, align="L")
-            pdf.cell(200, 10, txt=f"Invest in direct equities (Lower): {remaining_after_gold_bonds * direct_equities_lower_percentage / 100} ({direct_equities_lower_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in real state upto: {remaining_amount * real_estate_percentage / 100} Rs. ({real_estate_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in gold upto: {remaining_amount * gold_percentage / 100} Rs. ({gold_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in mutual funds upto: {remaining_amount * mutual_funds_percentage / 100} Rs. ({mutual_funds_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in direct equities (Upper) upto: {remaining_after_gold_bonds * direct_equities_upper_percentage / 100} Rs. ({direct_equities_upper_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in direct equities (Middle) upto: {remaining_after_gold_bonds * direct_equities_middle_percentage / 100} Rs. ({direct_equities_middle_percentage}%)", ln=True, align="L")
+            pdf.cell(200, 10, txt=f"Invest in direct equities (Lower) upto: {remaining_after_gold_bonds * direct_equities_lower_percentage / 100} Rs. ({direct_equities_lower_percentage}%)", ln=True, align="L")
     return pdf
 
     
